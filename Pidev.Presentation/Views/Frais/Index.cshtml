@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Presentation.Models.fraiVM>
+<br />
+<p>
+    @Html.ActionLink("Ajouter une nouvelle frai", "Create")
+</p>
+<br />
+@using (Html.BeginForm())
+{<table>
+        <tr>
+            <td>
+                <div>
+                    Rechercher par Type: @Html.TextBox("searchString")
+
+                </div>
+            </td>
+            <td>                 <input type="submit" value="Search" id="submit" />             </td>
+        </tr>
+    </table>}
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DTreat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NetRemb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusFrais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.uneExp_id_Exp)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.libelle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DTreat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetRemb)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusFrais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.uneExp_id_Exp)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id_frais }) |
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_frais })
+            </td>
+        </tr>
+    }
+
+</table>

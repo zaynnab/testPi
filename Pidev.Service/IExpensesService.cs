@@ -12,7 +12,10 @@ namespace Service
     {
         IEnumerable<expenses> GetexpByDate(DateTime id);
         IEnumerable<expenses> GetexpByType(string id);
+        IEnumerable<expenses> GetAll();
 
-     IEnumerable<expenses> GetexpMt(float id);
+        IEnumerable<expenses> GetexpMt(float id);
+    
+    
     }
 }

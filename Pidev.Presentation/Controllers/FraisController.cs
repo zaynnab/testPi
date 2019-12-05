@@ -3,8 +3,10 @@ using Presentation.Models;
 using Service;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -30,6 +32,7 @@ namespace Pidev.Presentation.Controllers
             }
             foreach (var vv in fDomain)
             {
+        
                 maliste.Add(new fraiVM
                 {
                     id_frais = vv.id_frais,
@@ -37,10 +40,9 @@ namespace Pidev.Presentation.Controllers
                     DTreat = (DateTime)vv.DTreat,
                     NetRemb = vv.NetRemb,
                     StatusFrais = vv.StatusFrais,
-                    uneExp_id_Exp = vv.uneExp_id_Exp
-
-
-                });
+                    uneExp_id_Exp = vv.uneExp_id_Exp,
+              
+                }) ;
      
             }
             return View(maliste);
@@ -78,6 +80,7 @@ namespace Pidev.Presentation.Controllers
                 DTreat = (DateTime)vv.DTreat,
                 NetRemb = vv.NetRemb,
                 StatusFrais = vv.StatusFrais,
+          
  
                 uneExp_id_Exp=vv.uneExp_id_Exp
             };
@@ -86,80 +89,67 @@ namespace Pidev.Presentation.Controllers
             a.Add(vv);
             a.Commit();
             //Service.Dispose();   
+
+            string subject = "reglement de frais";
+
+            string body = "Votre frai a été réalisé" +
+                "<br/><a href = '></a>";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = true,
+                Credentials = new NetworkCredential("zeineb.salah@esprit.tn", "esprit2018"),
+                Timeout = 20000
+            };
+            MailMessage p = new MailMessage("zeineb.salah@esprit.tn", "zeineb.salah@esprit.tn");
+
+            p.Subject = subject;
+            p.Body = body;
+            p.IsBodyHtml = true;
+
+
+            smtp.Send(p);
+
+
             return RedirectToAction("Index");
 
+
         }
-    /*    public ActionResult Edit(int id)
+
+        public ActionResult Edit(int id)
         {
+            frais dep = a.GetById(id);
+            frais x = new frais();
+         x.libelle = dep.libelle;
+           x.NetRemb = dep.NetRemb;
+            x.StatusFrais = dep.StatusFrais;
 
-            // GET: Expense/Edit/5
-            if (id == null)
+            Debug.WriteLine(x);
+            a.Update(dep);
+            a.Commit();
 
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            frais  vv = a.GetById(id);
-            fraiVM p1 = new fraiVM()
-            {
-
-
-                id_frais = vv.id_frais,
-                libelle = vv.libelle,
-                DTreat = (DateTime)vv.DTreat,
-                NetRemb = vv.NetRemb,
-                StatusFrais = vv.StatusFrais,
-
-
-                uneExp_id_Exp = vv.uneExp_id_Exp
-
-            };
-
-            if (vv == null)
-                return HttpNotFound();
-     
-            return View(p1);
-        }
-
-    */
-
-
-
-
-        // GET: Frais/Edit/5
-        public ActionResult Edit(int id,fraiVM dep)
+            return View(dep);
+}
+        
+            // GET: Frais/Edit/5
+ /*           public ActionResult Edit(int id,frais dep)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    if (id == null)
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    frais vv = a.GetById(id);
+                frais clb = a.GetById(id);
+                clb.libelle = dep.libelle;
+                clb.NetRemb = dep.NetRemb;
+                clb.StatusFrais = dep.StatusFrais;
+                
+                Debug.WriteLine(clb);
+                a.Update(clb);
+                a.Commit();
 
-                    dep = new fraiVM()
-                    {
-                     
-                        libelle = vv.libelle,
-                        DTreat = (DateTime)vv.DTreat,
-                        NetRemb = vv.NetRemb,
-                        StatusFrais = vv.StatusFrais,
-
-                   
-                    };
-
-
-                    if (vv == null)
-                        return HttpNotFound();
-
-                    Console.WriteLine("updaaaaaaaaaaaate");
-                    a.Update(vv);
-                    a.Commit();
-                    // Service.Dispose();
-                    return RedirectToAction("Index");
-                    // return RedirectToAction("Index");
-                }
-                // TODO: Add delete logic here
-                return View(dep);
-
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -168,6 +158,7 @@ namespace Pidev.Presentation.Controllers
         }
 
 
+        */
         // GET: Frais/Delete/5
         public ActionResult Delete(int id)
         {

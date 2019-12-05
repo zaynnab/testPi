@@ -38,7 +38,7 @@ namespace Presentation.Models
         public float MontantTotal { get; set; }
         [StringLength(255)]
         public string commentaire { get; set; }
-
+        public int nbVue { get; set; }
         public string Justificatif { get; set; }
         public virtual ICollection<fraiVM> frais { get; set; }
 

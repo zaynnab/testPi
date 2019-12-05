@@ -31,13 +31,15 @@ namespace Pidev.Presentation.Controllers
         public ActionResult Index(string searchString)
         {
             var maliste = new List<exp>();
-            IEnumerable<expenses> expDomain = expService.GetMany();
+            IEnumerable<expenses> expDomain = expService.GetAll();
             if (!String.IsNullOrEmpty(searchString))
             {
                 expDomain = expService.GetexpByType(searchString);
             }
+
             foreach (var dep in expDomain)
             {
+
                 maliste.Add(new exp
                 {
                     id_Exp = dep.id_Exp,
@@ -49,9 +51,10 @@ namespace Pidev.Presentation.Controllers
                     Justificatif = dep.Justificatif,
                     MontantTotal = dep.MontantTotal,
                     commentaire = dep.commentaire,
-                    mm_id_mission = dep.mm_id_mission
+                    mm_id_mission = dep.mm_id_mission,
+                    nbVue = dep.nbVue
                     //Frexp_id_frais = dep.Frexp_id_frais
-                });
+                }) ;
             }
             return View(maliste);
         }
@@ -88,7 +91,10 @@ namespace Pidev.Presentation.Controllers
         // GET: Expense/Details/5
         public ActionResult Details(int id)
         {
-            return View(expService.GetById(id));
+            var s = expService.GetById(id);
+            s.nbVue = s.nbVue + 1;
+            return View(s);
+          
         }
 
 
@@ -144,30 +150,7 @@ namespace Pidev.Presentation.Controllers
 
 
 
-            string subject = "sssssssssssssssssssss";
-
-            string body = "bbbbbbbbbbbbbbbbbbbbbbbbb" +
-                "<br/><a href = '></a>";
-
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = true,
-                Credentials = new NetworkCredential("zeineb.salah@esprit.tn", "esprit2018"),
-                Timeout = 20000
-            };
-            MailMessage p = new MailMessage("zeineb.salah@esprit.tn", "zeineb.salah@esprit.tn");
-
-            p.Subject = subject;
-            p.Body = body;
-            p.IsBodyHtml = true;
-
-
-            smtp.Send(p);
-
+          
 
             return RedirectToAction("Index");
 

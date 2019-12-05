@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pidev.data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -27,5 +28,7 @@ namespace Presentation.Models
         [Display(Name = "Pour la dépense")]
         public int? uneExp_id_Exp { get; set; }
     public virtual ICollection<SelectListItem> expenses { get; set; }
+
+    
 }
 }

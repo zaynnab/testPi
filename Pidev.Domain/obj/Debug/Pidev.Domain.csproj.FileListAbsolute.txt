@@ -18,3 +18,8 @@ C:\Users\User\Desktop\6\Pidev\Pidev.Domain\bin\Debug\Pidev.Domain.dll
 C:\Users\User\Desktop\6\Pidev\Pidev.Domain\bin\Debug\Pidev.Domain.pdb
 C:\Users\User\Desktop\6\Pidev\Pidev.Domain\obj\Debug\Pidev.Domain.dll
 C:\Users\User\Desktop\6\Pidev\Pidev.Domain\obj\Debug\Pidev.Domain.pdb
+C:\Users\User\source\repos\zaynnab\pidev\Pidev.Domain\bin\Debug\Pidev.Domain.dll
+C:\Users\User\source\repos\zaynnab\pidev\Pidev.Domain\bin\Debug\Pidev.Domain.pdb
+C:\Users\User\source\repos\zaynnab\pidev\Pidev.Domain\obj\Debug\Pidev.Domain.dll
+C:\Users\User\source\repos\zaynnab\pidev\Pidev.Domain\obj\Debug\Pidev.Domain.pdb
+C:\Users\User\source\repos\zaynnab\pidev\Pidev.Domain\obj\Debug\Pidev.Domain.csprojAssemblyReference.cache

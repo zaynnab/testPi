@@ -27,6 +27,11 @@ namespace Service
             return GetMany(f => f.NatureDepense.ToString().Contains(id));
 
         }
+
+        public IEnumerable<expenses> GetAll()
+        {
+            return GetMany().OrderByDescending(p => p.DateExpense);
+        }
         public IEnumerable<expenses> GetexpMt(float id)
         {
             return GetMany(f => f.MontantTotal>id);

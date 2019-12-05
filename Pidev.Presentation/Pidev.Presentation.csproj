@@ -1742,6 +1742,8 @@
     <Content Include="Content\plugins\toastr\toastr.min.js" />
     <Content Include="Content\Upload\1.png" />
     <Content Include="Content\Upload\2.jpg" />
+    <Content Include="Content\Upload\3.jpg" />
+    <Content Include="Content\Upload\4.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

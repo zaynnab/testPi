@@ -15,7 +15,7 @@ namespace Pidev.data
         public DateTime? DateExpense { get; set; }
 
         public float MontantTotal { get; set; }
-
+        public int nbVue { get; set; }
       
         public Nature NatureDepense { get; set; }
 
